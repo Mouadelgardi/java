@@ -1,0 +1,84 @@
+exemple:
+Entrez une chaîne : heuu bonjour, voici ma chaîne !
+Les mots de " heuu bonjour, voici ma chaîne ! " sont:
+'heuu'
+'bonjour,'
+'voici'
+'ma'
+'chaîne'
+
+//////////////////////////code /////////////////////////////////////
+
+'!'package ex3;
+
+public class TokenizableString {
+private String content ;
+private int len;
+private int from;
+public TokenizableString(String content,int len,int from){
+	
+	this.content=content;
+	this.len=len;
+	this.from=from;
+	
+	
+	}
+
+private boolean espace (char c ) {
+	return (c ==' ');
+}
+public void tokenize() {
+	int i=0;
+	int taille=content.length();
+	System.out.println("Les mots de '" +content+"'sont:");	
+	while(nextToken()==1 ) {
+		System.out.println("'" +content.substring(i,len )+"'");
+		
+		from=from+1;
+		i=from;
+	}
+	System.out.println("'" +content.substring(i,taille )+"'");
+	
+}
+
+private int nextToken() {
+	int taille=content.length();
+	
+	while( (from<taille-1)  && !(espace(content.charAt(from)))) {
+		from=from+1;
+		
+	}
+	
+	if(espace(content.charAt(from))) {
+		
+		len=from;
+		
+		return 1;
+	}
+	else {
+		return 0;
+	}
+	
+}
+
+
+
+}
+//////////////////////////////////main//////////////////////////////
+package ex3;
+import java.util.Scanner;
+public class test {
+	private static Scanner keyb=new Scanner(System.in);
+	public static void main(String[] args) {
+		String phrasee;
+		 
+		System.out.println("entrer une phrase");
+		phrasee=keyb.nextLine();
+		TokenizableString ph =new TokenizableString(phrasee,0,0);
+		ph.tokenize();
+		
+		
+				
+	}
+	
+}
